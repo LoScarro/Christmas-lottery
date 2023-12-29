@@ -28,6 +28,24 @@ export const getParticipantCount = async (walletAddress) => {
     }
 };
 
+export const getWinners = async (walletAddress) => {
+    try {
+        const winners = await christmas_lottery_contract.methods.showWinners().call({ from: walletAddress });
+
+        // Convertire ogni tupla in un oggetto con i campi firstname, lastname e studentID
+        const winnersArray = winners.map(tuple => ({
+            firstname: tuple[0],
+            lastname: tuple[1],
+            studentID: tuple[2]
+        }));
+
+        return winnersArray;
+    } catch (error) {
+        console.error('Error retrieving winners:', error);
+    }
+};
+
+
 export const addTicket = async (firstname, lastname, studentID, number, walletAddress) => {
     //set up transaction parameters
     const transactionParameters = {

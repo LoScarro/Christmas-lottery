@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./addTicket.css";
 import {
     addTicket
 } from "../../utils/contract.js";

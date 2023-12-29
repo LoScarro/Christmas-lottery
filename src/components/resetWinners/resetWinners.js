@@ -1,3 +1,4 @@
+import "./resetWinners.css";
 import {
     resetWinners
 } from "../../utils/contract.js";

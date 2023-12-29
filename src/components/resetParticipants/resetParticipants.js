@@ -1,3 +1,4 @@
+import "./resetParticipants.css";
 import {
     resetParticipants
 } from "../../utils/contract.js";
