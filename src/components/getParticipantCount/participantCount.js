@@ -18,11 +18,13 @@ export default function ParticipantCount({ walletAddress, setStatus }) {
     };
 
     return (
-        <div>
-            <p>Number of participants: {participantCount}</p>
-            <button onClick={onGetParticipantsPressed}>
-                Get Participant Count
-            </button>
+        <div id="container">
+            <div>
+                <p>Number of participants: {participantCount}</p>
+                <button onClick={onGetParticipantsPressed}>
+                    Get Participant Count
+                </button>
+            </div>
         </div>
     )
 }

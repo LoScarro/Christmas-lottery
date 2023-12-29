@@ -16,44 +16,46 @@ export default function AddTicketForm({ walletAddress, setStatus }) {
     };
 
     return (
-        <form onSubmit={onAddTicketSubmit}>
-            <label>
-                First Name:
-                <input
-                    type="text"
-                    value={firstname}
-                    onChange={(e) => setFirstname(e.target.value)}
-                />
-            </label>
+        <div id="container">
+            <form onSubmit={onAddTicketSubmit}>
+                <label>
+                    First Name:
+                    <input
+                        type="text"
+                        value={firstname}
+                        onChange={(e) => setFirstname(e.target.value)}
+                    />
+                </label>
 
-            <label>
-                Last Name:
-                <input
-                    type="text"
-                    value={lastname}
-                    onChange={(e) => setLastname(e.target.value)}
-                />
-            </label>
+                <label>
+                    Last Name:
+                    <input
+                        type="text"
+                        value={lastname}
+                        onChange={(e) => setLastname(e.target.value)}
+                    />
+                </label>
 
-            <label>
-                Student ID:
-                <input
-                    type="text"
-                    value={studentID}
-                    onChange={(e) => setStudentID(e.target.value)}
-                />
-            </label>
+                <label>
+                    Student ID:
+                    <input
+                        type="text"
+                        value={studentID}
+                        onChange={(e) => setStudentID(e.target.value)}
+                    />
+                </label>
 
-            <label>
-                Ticket Number:
-                <input
-                    type="number"
-                    value={number}
-                    onChange={(e) => setNumber(e.target.value)}
-                />
-            </label>
+                <label>
+                    Ticket Number:
+                    <input
+                        type="number"
+                        value={number}
+                        onChange={(e) => setNumber(e.target.value)}
+                    />
+                </label>
 
-            <button type="submit">Add Ticket</button>
-        </form>
+                <button type="submit">Add Ticket</button>
+            </form>
+        </div>
     );
 }
