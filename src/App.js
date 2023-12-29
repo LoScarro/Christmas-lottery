@@ -10,9 +10,6 @@ import Winners from "./components/getWinners/getWinners";
 // manage all the login related to the wallet connection
 import Wallet from "./components/walletConnection/walletConnection";
 
-// import styles
-import './App.css';
-
 // import utils
 import { christmas_lottery_contract } from "./utils/contract.js";
 
