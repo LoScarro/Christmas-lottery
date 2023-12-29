@@ -1,4 +1,5 @@
 import ChristmasLottery from './ChristmasLottery'
+import AddTicketForm from './components/addTicket/addTicket'
 import './App.css';
 
 function App() {

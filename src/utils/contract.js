@@ -13,30 +13,66 @@ export const christmas_lottery_contract = new web3.eth.Contract(
     contractAddress
 );
 
-export const getParticipantsCount = async (walletAddress) => {
-    try {
-        const participantsNumber = await christmas_lottery_contract.methods.participantsCount().call({ from: walletAddress });
-        // convert from BigNumber to String. The web3.js library often returns numbers as BigNumber objects.
-        return participantsNumber.toString();
-    }
-    catch (error) {
-        console.error('Error sending transaction:', error);
-    }
+export const checkConnection = async (walletAddress) => {
+    return (!window.ethereum || !walletAddress)
+}
 
+export const getParticipantCount = async (walletAddress) => {
 
+        try {
+            const participantsNumber = await christmas_lottery_contract.methods.participantsCount().call({ from: walletAddress });
+            // convert from BigNumber to String. The web3.js library often returns numbers as BigNumber objects.
+            return participantsNumber.toString();
+        }
+        catch (error) {
+            console.error('Error sending transaction:', error);
+        }
+    
 };
+
+// export const addTicket = async (firstname, lastname, studentID, number, walletAddress) => {
+//     if (!checkConnection(walletAddress)) {
+//         try {
+//             console.log('Sending transaction...');
+//             const accounts = await web3.eth.getAccounts();
+//             const result = await christmas_lottery_contract.methods
+//                 .addTicket(firstname, lastname, studentID, number)
+//                 .send({ from: walletAddress });
+
+//             console.log('Transaction successful:', result);
+//         } catch (error) {
+//             console.error('Error sending transaction:', error);
+//         }
+//     }
+// };
 
 export const addTicket = async (firstname, lastname, studentID, number, walletAddress) => {
+    //set up transaction parameters
+    const transactionParameters = {
+        to: contractAddress, // Required except during contract publications.
+        from: walletAddress, // must match user's active address.
+        data: christmas_lottery_contract.methods.addTicket(firstname, lastname, studentID, number).encodeABI(),
+    };
+    //sign the transaction
     try {
-        console.log('Sending transaction...');
-        const accounts = await web3.eth.getAccounts();
-        const result = await christmas_lottery_contract.methods
-            .addTicket(firstname, lastname, studentID, number)
-            .send({ from: walletAddress });
-
-        console.log('Transaction successful:', result);
+        const txHash = await window.ethereum.request({
+            method: "eth_sendTransaction",
+            params: [transactionParameters],
+        });
+        return {
+            status: (
+                <span>
+                    ✅{" "}
+                    <a target="_blank" href={`https://ropsten.etherscan.io/tx/${txHash}`}>
+                        View the status of your transaction on Etherscan!
+                    </a>
+                </span>
+            ),
+        };
     } catch (error) {
-        console.error('Error sending transaction:', error);
+        return {
+            status: "😥 " + error.message,
+        };
     }
-};
 
+}

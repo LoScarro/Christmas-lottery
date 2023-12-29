@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 
 export const connectWallet = async () => {
-    // checks if window.ethereum is enabled in browser
+    // checks if window.ethereum is installed in browser
     if (window.ethereum) {
         try {
             // try to connect to Metamask. Calling this function will open up Metamask in the browser
@@ -9,7 +9,7 @@ export const connectWallet = async () => {
                 method: "eth_requestAccounts",
             });
             const obj = {
-                status: "Good Luck! 🤞🏻",
+                status: "🤞🏻 Good Luck!",
                 // take the first address in the array of addresses and display it to the user in our Wallet
                 address: addressArray[0],
             };
@@ -39,6 +39,7 @@ export const connectWallet = async () => {
         };
     }
 };
+
 //check if an address is already connected to the dApp and update our UI accordingly
 //returns an array containing the Metamask addresses currently connected to the dApp.
 export const getCurrentWalletConnected = async () => {
@@ -47,10 +48,11 @@ export const getCurrentWalletConnected = async () => {
             const addressArray = await window.ethereum.request({
                 method: "eth_accounts",
             });
+            // if Metamask is connected then take the first address in the array of addresses
             if (addressArray.length > 0) {
                 return {
                     address: addressArray[0],
-                    status: "Good Luck! 🤞🏻",
+                    status: "🤞🏻 Good Luck!",
                 };
             } else {
                 return {
