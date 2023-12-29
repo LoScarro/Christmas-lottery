@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import AddTicketForm from "./components/addTicket/addTicket";
 import ParticipantCount from "./components/getParticipantCount/participantCount";
 import DrawTicket from "./components/drawTicket/drawTicket";
+import ResetWinners from "./components/resetWinners/resetWinners";
+import ResetParticipants from "./components/resetParticipants/resetParticipants";
 
 import {
   connectWallet,
@@ -23,22 +25,21 @@ function SmartContractForm() {
       setWallet(address);
       setStatus(status);
     }
+
     addSmartContractListener();
 
     getConnectedWallet();
     addWalletListener();
   }, []);
 
-  // listener for events in the smart contract
+  // TODO: listener for events in the smart contract
   function addSmartContractListener() {
     christmas_lottery_contract.events.WinnerDrawn({}, (error, data) => {
       if (error) {
         setStatus("😥 " + error.message);
       } else {
-        console.log("The winner is...");
-        // event WinnerDrawn(string  _firstname, string _lastname, string indexed _studentID);
-        // get the winner's _lastname
         setStatus(data.returnValues[1]);
+        console.log(data.returnValues[1]);
       }
     });
   }
@@ -98,8 +99,18 @@ function SmartContractForm() {
         walletAddress={walletAddress}
         setStatus={setStatus}
       />
-      
+
       <DrawTicket
+        walletAddress={walletAddress}
+        setStatus={setStatus}
+      />
+
+      <ResetWinners
+        walletAddress={walletAddress}
+        setStatus={setStatus}
+      />
+
+      <ResetParticipants
         walletAddress={walletAddress}
         setStatus={setStatus}
       />

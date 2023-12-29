@@ -116,6 +116,20 @@
     },
     {
         "inputs": [],
+        "name": "resetPartecipants",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "resetWinners",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
         "name": "showWinners",
         "outputs": [
             {

@@ -16,7 +16,7 @@ export default function AddTicketForm({ walletAddress, setStatus }) {
     };
 
     return (
-        <div id="container">
+        
             <form onSubmit={onAddTicketSubmit}>
                 <label>
                     First Name:
@@ -56,6 +56,6 @@ export default function AddTicketForm({ walletAddress, setStatus }) {
 
                 <button type="submit">Add Ticket</button>
             </form>
-        </div>
+        
     );
 }
