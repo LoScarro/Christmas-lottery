@@ -32,7 +32,27 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
+#container {
+  margin-top: 200px;
+  margin-bottom: 20px;
+}
+
+/* Style for the status paragraph */
+#status {
+  font-weight: bold;
+  color: #333; /* Change the color to your preference */
+}
+
+/* Additional styles for individual components if needed */
+/* e.g., if you want to limit the width of a specific component */
+/*
+.DrawTicket {
+  max-width: 400px;
+}
+*/

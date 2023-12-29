@@ -13,7 +13,7 @@ export default function ResetWinners({ walletAddress, setStatus }) {
     };
 
     return (
-        <div id="container">
+        <div>
             <button onClick={onResetWinnersSubmit}>
                 Reset Winners
             </button>

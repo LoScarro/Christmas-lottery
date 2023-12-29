@@ -13,7 +13,7 @@ export default function ResetParticipants({ walletAddress, setStatus }) {
     };
 
     return (
-        <div id="container">
+        <div>
             <button onClick={onResetParticipantsSubmit}>
                 Reset Participants
             </button>

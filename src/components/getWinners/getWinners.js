@@ -21,7 +21,7 @@ export default function Winners({ walletAddress, setStatus }) {
     };
 
     return (
-        <div id="container">
+        <div>
             <div>
                 <button onClick={onGetWinnersPressed}>
                     Get Winners

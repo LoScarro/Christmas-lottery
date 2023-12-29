@@ -52,7 +52,7 @@ function App() {
         setStatus={setStatus}
       />
 
-      {/* <ParticipantCount
+      <ParticipantCount
         walletAddress={walletAddress}
         setStatus={setStatus}
       />
@@ -75,7 +75,7 @@ function App() {
       <Winners
         walletAddress={walletAddress}
         setStatus={setStatus}
-      /> */}
+      />
 
       <p id="status">{status}</p>
 

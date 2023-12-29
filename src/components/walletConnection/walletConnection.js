@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react";
+import "./walletConnection.css";
 import { connectWallet, getCurrentWalletConnected } from "../../utils/wallet.js";
 export default function Wallet({ walletAddress, setStatus, setWallet }) {
 
