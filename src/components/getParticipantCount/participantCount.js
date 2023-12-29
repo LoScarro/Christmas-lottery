@@ -19,11 +19,11 @@ export default function ParticipantCount({ walletAddress, setStatus }) {
     };
 
     return (
-        <div>
+        <section id='participantCount'>
             <p>Number of participants: {participantCount}</p>
             <button onClick={onGetParticipantsPressed}>
                 Get Participant Count
             </button>
-        </div>
+        </section>
     )
 }

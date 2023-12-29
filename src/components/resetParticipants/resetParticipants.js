@@ -13,10 +13,10 @@ export default function ResetParticipants({ walletAddress, setStatus }) {
     };
 
     return (
-        <div>
+        <section id='resetParticipants'>
             <button onClick={onResetParticipantsSubmit}>
                 Reset Participants
             </button>
-        </div>
+        </section>
     );
 }

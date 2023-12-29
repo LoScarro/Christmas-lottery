@@ -56,8 +56,10 @@ export default function Wallet({ walletAddress, setStatus, setWallet }) {
     };
 
     return (
-        <button id="walletButton" onClick={handleWalletConnection}>
-            {walletAddress.length > 0 ? formatWalletAddress(walletAddress) : <span>Connect Wallet</span>}
-        </button>
+        <section id='wallet'>
+            <button id="walletButton" onClick={handleWalletConnection}>
+                {walletAddress.length > 0 ? formatWalletAddress(walletAddress) : <span>Connect Wallet</span>}
+            </button>
+        </section >
     )
 }

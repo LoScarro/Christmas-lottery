@@ -13,10 +13,10 @@ export default function ResetWinners({ walletAddress, setStatus }) {
     };
 
     return (
-        <div>
+        <section id='resetWinners'>
             <button onClick={onResetWinnersSubmit}>
                 Reset Winners
             </button>
-        </div>
+        </section>
     );
 }

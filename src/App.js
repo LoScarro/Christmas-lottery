@@ -39,8 +39,7 @@ function App() {
   }
 
   return (
-    <div id="container">
-
+    <>
       <Wallet
         walletAddress={walletAddress}
         setStatus={setStatus}
@@ -78,8 +77,7 @@ function App() {
       />
 
       <p id="status">{status}</p>
-
-    </div>
+    </>
   );
 }
 

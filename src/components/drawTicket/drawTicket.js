@@ -14,16 +14,18 @@ export default function DrawTicket({ walletAddress, setStatus }) {
     };
 
     return (
-        <form onSubmit={onDrawTicketSubmit}>
-            <label>
-                Number:
-                <input
-                    type="text"
-                    value={number}
-                    onChange={(e) => setNumber(e.target.value)}
-                />
-            </label>
-            <button type="submit">Draw Winner</button>
-        </form>
+        <section id='drawTicket'>
+            <form onSubmit={onDrawTicketSubmit}>
+                <label>
+                    Number:
+                    <input
+                        type="text"
+                        value={number}
+                        onChange={(e) => setNumber(e.target.value)}
+                    />
+                </label>
+                <button type="submit">Draw Winner</button>
+            </form>
+        </section>
     );
 }
