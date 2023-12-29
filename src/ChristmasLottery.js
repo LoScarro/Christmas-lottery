@@ -1,9 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import AddTicketForm from "./components/addTicket/addTicket";
-import {
-  getParticipantCount,
-} from "./utils/contract.js";
+import ParticipantCount from "./components/getParticipantCount/participantCount";
+
 import {
   connectWallet,
   getCurrentWalletConnected
@@ -11,7 +10,7 @@ import {
 
 function SmartContractForm() {
 
-  const [participantCount, setParticipantCount] = useState(0); // New state for participant count
+  
 
   const [walletAddress, setWallet] = useState("");
   const [status, setStatus] = useState("");
@@ -53,11 +52,6 @@ function SmartContractForm() {
     }
   }
 
-  const onGetParticipantsPressed = async () => {
-    const count = await getParticipantCount(walletAddress);
-    setParticipantCount(count);
-  };
-
   const formatWalletAddress = (address) => {
     return "Connected: " +
       String(address).substring(0, 6) +
@@ -78,17 +72,17 @@ function SmartContractForm() {
         {walletAddress.length > 0 ? formatWalletAddress(walletAddress) : <span>Connect Wallet</span>}
       </button>
 
+      
+
       <AddTicketForm
         walletAddress={walletAddress}
         setStatus={setStatus}
       />
 
-      <div>
-        <p>Number of participants: {participantCount}</p>
-        <button onClick={onGetParticipantsPressed}>
-          Get Participant Count
-        </button>
-      </div>
+      <ParticipantCount
+        walletAddress={walletAddress}
+        setStatus={setStatus}
+      />
 
       <p id="status">{status}</p>
 

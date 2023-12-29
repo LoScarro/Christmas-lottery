@@ -63,7 +63,7 @@ export const addTicket = async (firstname, lastname, studentID, number, walletAd
             status: (
                 <span>
                     ✅{" "}
-                    <a target="_blank" href={`https://ropsten.etherscan.io/tx/${txHash}`}>
+                    <a target="_blank" href={`https://sepolia.etherscan.io/tx/${txHash}`}>
                         View the status of your transaction on Etherscan!
                     </a>
                 </span>
