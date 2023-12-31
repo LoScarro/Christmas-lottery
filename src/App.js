@@ -9,9 +9,12 @@ import ResetParticipants from "./components/resetParticipants/resetParticipants"
 import Winners from "./components/getWinners/getWinners";
 // manage all the login related to the wallet connection
 import Wallet from "./components/walletConnection/walletConnection";
+// contains the messages for the user
+import Status from "./components/status/status.js";
 
 // import utils
 import { christmas_lottery_contract } from "./utils/contract.js";
+
 
 
 function App() {
@@ -37,18 +40,22 @@ function App() {
 
   return (
     <>
-      <Wallet
-        walletAddress={walletAddress}
-        setStatus={setStatus}
-        setWallet={setWallet}
-      />
+      <div class="top-bar">
+
+        <ParticipantCount
+          walletAddress={walletAddress}
+          setStatus={setStatus}
+        />
+
+        <Wallet
+          walletAddress={walletAddress}
+          setStatus={setStatus}
+          setWallet={setWallet}
+        />
+
+      </div>
 
       <AddTicketForm
-        walletAddress={walletAddress}
-        setStatus={setStatus}
-      />
-
-      <ParticipantCount
         walletAddress={walletAddress}
         setStatus={setStatus}
       />
@@ -58,22 +65,28 @@ function App() {
         setStatus={setStatus}
       />
 
-      <ResetWinners
-        walletAddress={walletAddress}
-        setStatus={setStatus}
-      />
+      <div class="reset-buttons">
 
-      <ResetParticipants
-        walletAddress={walletAddress}
-        setStatus={setStatus}
-      />
+        <ResetWinners
+          walletAddress={walletAddress}
+          setStatus={setStatus}
+        />
+
+        <ResetParticipants
+          walletAddress={walletAddress}
+          setStatus={setStatus}
+        />
+
+      </div>
 
       <Winners
         walletAddress={walletAddress}
         setStatus={setStatus}
       />
 
-      <p id="status">{status}</p>
+      <Status
+        status={status}
+      />
     </>
   );
 }

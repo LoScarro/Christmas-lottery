@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./participantCount.css";
 
 import {
@@ -18,12 +18,15 @@ export default function ParticipantCount({ walletAddress, setStatus }) {
 
     };
 
+    useEffect(() => {
+        onGetParticipantsPressed();
+    }, [onGetParticipantsPressed]);
+
+
+
     return (
-        <section id='participantCount'>
+        <section id='participantCount' class='christams-lottery-comp'>
             <div class="subtitle">Number of participants: {participantCount}</div>
-            <button type="text" class="submit" onClick={onGetParticipantsPressed}>
-                Get Participant Count
-            </button>
         </section>
     )
 }

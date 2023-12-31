@@ -14,7 +14,7 @@ export default function DrawTicket({ walletAddress, setStatus }) {
     };
 
     return (
-        <section id='drawTicket'>
+        <section id='drawTicket' class='christams-lottery-comp'>
             <form onSubmit={onDrawTicketSubmit}>
             <div class="title">Draw a winner!</div>
                 <div class="input-container ic1">

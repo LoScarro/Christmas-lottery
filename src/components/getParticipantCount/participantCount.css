@@ -1,8 +1,8 @@
 #participantCount {
-    background-color: #15172b;
-    border-radius: 20px;
-    box-sizing: border-box;
-    height: auto;
-    padding: 20px;
-    width: 320px;
+    width: 20%;
+    margin-left: 5%;
+}
+
+#participantCount .submit {
+    width: 50%;
 }

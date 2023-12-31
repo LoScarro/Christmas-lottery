@@ -17,7 +17,7 @@ export default function AddTicketForm({ walletAddress, setStatus }) {
     };
 
     return (
-        <section id='addTicket'>
+        <section id='addTicket' class='christams-lottery-comp'>
             <form onSubmit={onAddTicketSubmit}>
                 <div class="title">Welcome</div>
                 <div class="subtitle">Buy a ticket!</div>
@@ -33,12 +33,12 @@ export default function AddTicketForm({ walletAddress, setStatus }) {
                 </div>
                 <div class="input-container ic2">
                     <input id="studentId" class="input" type="text" placeholder=" " value={studentID} onChange={(e) => setStudentID(e.target.value)} />
-                    <div class="cut cut-short"></div>
+                    <div class="cut"></div>
                     <label for="studentId" class="placeholder">studentID</label>
                 </div>
                 <div class="input-container ic2">
                     <input id="number" class="input" type="number" placeholder=" " value={number} onChange={(e) => setNumber(e.target.value)} />
-                    <div class="cut cut-short"></div>
+                    <div class="cut cut-long"></div>
                     <label for="number" class="placeholder">Number of tickets</label>
                 </div>
                 <button type="text" class="submit">submit</button>

@@ -21,14 +21,8 @@ export default function Winners({ walletAddress, setStatus }) {
     };
 
     return (
-        <section id='winners'>
-            <div>
-                <button onClick={onGetWinnersPressed}>
-                    Get Winners
-                </button>
-            </div>
-            <div>
-                <p>Winners:</p>
+        <section id='winners' class='christams-lottery-comp'>
+            <div class="subtitle"> Winners:
                 {winners.map((winner, index) => (
                     <div key={index}>
                         <p>Name: {winner.firstname} </p>
@@ -38,6 +32,9 @@ export default function Winners({ walletAddress, setStatus }) {
                     </div>
                 ))}
             </div>
+            <button type="text" class="submit" onClick={onGetWinnersPressed}>
+            Get Winners
+            </button>
         </section>
     );
 }

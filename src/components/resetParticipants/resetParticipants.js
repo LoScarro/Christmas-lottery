@@ -13,8 +13,8 @@ export default function ResetParticipants({ walletAddress, setStatus }) {
     };
 
     return (
-        <section id='resetParticipants'>
-            <button onClick={onResetParticipantsSubmit}>
+        <section id='resetParticipants' class='christams-lottery-comp'>
+            <button type="text" class="submit" onClick={onResetParticipantsSubmit}>
                 Reset Participants
             </button>
         </section>
