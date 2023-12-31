@@ -20,8 +20,8 @@ export default function ParticipantCount({ walletAddress, setStatus }) {
 
     return (
         <section id='participantCount'>
-            <p>Number of participants: {participantCount}</p>
-            <button onClick={onGetParticipantsPressed}>
+            <div class="subtitle">Number of participants: {participantCount}</div>
+            <button type="text" class="submit" onClick={onGetParticipantsPressed}>
                 Get Participant Count
             </button>
         </section>

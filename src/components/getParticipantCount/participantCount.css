@@ -1,3 +1,8 @@
 #participantCount {
-    background-color: red;
+    background-color: #15172b;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: auto;
+    padding: 20px;
+    width: 320px;
 }

@@ -21,7 +21,7 @@ export default function Winners({ walletAddress, setStatus }) {
     };
 
     return (
-        <scetion id='winners'>
+        <section id='winners'>
             <div>
                 <button onClick={onGetWinnersPressed}>
                     Get Winners
@@ -38,6 +38,6 @@ export default function Winners({ walletAddress, setStatus }) {
                     </div>
                 ))}
             </div>
-        </scetion>
+        </section>
     );
 }

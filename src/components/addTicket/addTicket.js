@@ -19,43 +19,29 @@ export default function AddTicketForm({ walletAddress, setStatus }) {
     return (
         <section id='addTicket'>
             <form onSubmit={onAddTicketSubmit}>
-                <label>
-                    First Name:
-                    <input
-                        type="text"
-                        value={firstname}
-                        onChange={(e) => setFirstname(e.target.value)}
-                    />
-                </label>
-
-                <label>
-                    Last Name:
-                    <input
-                        type="text"
-                        value={lastname}
-                        onChange={(e) => setLastname(e.target.value)}
-                    />
-                </label>
-
-                <label>
-                    Student ID:
-                    <input
-                        type="text"
-                        value={studentID}
-                        onChange={(e) => setStudentID(e.target.value)}
-                    />
-                </label>
-
-                <label>
-                    Ticket Number:
-                    <input
-                        type="number"
-                        value={number}
-                        onChange={(e) => setNumber(e.target.value)}
-                    />
-                </label>
-
-                <button type="submit">Add Ticket</button>
+                <div class="title">Welcome</div>
+                <div class="subtitle">Buy a ticket!</div>
+                <div class="input-container ic1">
+                    <input id="firstname" class="input" type="text" placeholder=" " value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+                    <div class="cut"></div>
+                    <label for="firstname" class="placeholder">First name</label>
+                </div>
+                <div class="input-container ic2">
+                    <input id="lastname" class="input" type="text" placeholder=" " value={lastname} onChange={(e) => setLastname(e.target.value)} />
+                    <div class="cut"></div>
+                    <label for="lastname" class="placeholder">Last name</label>
+                </div>
+                <div class="input-container ic2">
+                    <input id="studentId" class="input" type="text" placeholder=" " value={studentID} onChange={(e) => setStudentID(e.target.value)} />
+                    <div class="cut cut-short"></div>
+                    <label for="studentId" class="placeholder">studentID</label>
+                </div>
+                <div class="input-container ic2">
+                    <input id="number" class="input" type="number" placeholder=" " value={number} onChange={(e) => setNumber(e.target.value)} />
+                    <div class="cut cut-short"></div>
+                    <label for="number" class="placeholder">Number of tickets</label>
+                </div>
+                <button type="text" class="submit">submit</button>
             </form>
         </section>
     );
