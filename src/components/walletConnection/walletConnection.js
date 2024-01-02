@@ -21,7 +21,7 @@ export default function Wallet({ walletAddress, setStatus, setWallet }) {
             window.ethereum.on("accountsChanged", (accounts) => {
                 if (accounts.length > 0) {
                     setWallet(accounts[0]);
-                    setStatus("🤞🏻 Good Luck!");
+                    setStatus("☃️ Welcome to the Christmas Lottery!");
                 } else {
                     setWallet("");
                     setStatus("🦊 Connect to Metamask using the top right button.");

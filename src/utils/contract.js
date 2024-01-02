@@ -156,10 +156,6 @@ export const drawTicket = async (number, walletAddress) => {
                     <a target="_blank" href={`https://sepolia.etherscan.io/tx/${txHash}`}>
                         View the status of your transaction on Etherscan!
                     </a>
-                    <br />
-                    <a>
-                        And the winner is...
-                    </a>
                 </span>
             ),
         };

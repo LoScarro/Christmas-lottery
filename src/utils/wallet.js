@@ -1,5 +1,3 @@
-import Web3 from 'web3';
-
 export const connectWallet = async () => {
     // checks if window.ethereum is installed in browser
     if (window.ethereum) {
@@ -9,7 +7,7 @@ export const connectWallet = async () => {
                 method: "eth_requestAccounts",
             });
             const obj = {
-                status: "🤞🏻 Good Luck!",
+                status: "☃️ Welcome to the Christmas Lottery!",
                 // take the first address in the array of addresses and display it to the user in our Wallet
                 address: addressArray[0],
             };
@@ -52,7 +50,7 @@ export const getCurrentWalletConnected = async () => {
             if (addressArray.length > 0) {
                 return {
                     address: addressArray[0],
-                    status: "🤞🏻 Good Luck!",
+                    status: "☃️ Welcome to the Christmas Lottery!",
                 };
             } else {
                 return {

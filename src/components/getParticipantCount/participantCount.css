@@ -1,8 +1,7 @@
 #participantCount {
-    width: 20%;
-    margin-left: 5%;
+    width: 30%;
 }
 
-#participantCount .submit {
-    width: 50%;
+#participantCount .subtitle{
+    font-size: larger;
 }

@@ -18,7 +18,7 @@ export default function DrawTicket({ walletAddress, setStatus }) {
             <form onSubmit={onDrawTicketSubmit}>
             <div class="title">Draw a winner!</div>
                 <div class="input-container ic1">
-                    <input id="winners number" class="input" type="number" placeholder=" " value={number} onChange={(e) => setNumber(e.target.value)} />
+                    <input id="winners number" class="input" type="number" required placeholder=" " value={number} onChange={(e) => setNumber(e.target.value)} />
                     <div class="cut"></div>
                     <label for="number" class="placeholder">How many winners?</label>
                 </div>

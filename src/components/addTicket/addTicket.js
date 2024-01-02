@@ -22,22 +22,22 @@ export default function AddTicketForm({ walletAddress, setStatus }) {
                 <div class="title">Welcome</div>
                 <div class="subtitle">Buy a ticket!</div>
                 <div class="input-container ic1">
-                    <input id="firstname" class="input" type="text" placeholder=" " value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+                    <input id="firstname" class="input" type="text" required placeholder=" " value={firstname} onChange={(e) => setFirstname(e.target.value)} />
                     <div class="cut"></div>
                     <label for="firstname" class="placeholder">First name</label>
                 </div>
                 <div class="input-container ic2">
-                    <input id="lastname" class="input" type="text" placeholder=" " value={lastname} onChange={(e) => setLastname(e.target.value)} />
+                    <input id="lastname" class="input" type="text" required placeholder=" " value={lastname} onChange={(e) => setLastname(e.target.value)} />
                     <div class="cut"></div>
                     <label for="lastname" class="placeholder">Last name</label>
                 </div>
                 <div class="input-container ic2">
-                    <input id="studentId" class="input" type="text" placeholder=" " value={studentID} onChange={(e) => setStudentID(e.target.value)} />
+                    <input id="studentId" class="input" type="text" required placeholder=" " value={studentID} onChange={(e) => setStudentID(e.target.value)} />
                     <div class="cut"></div>
                     <label for="studentId" class="placeholder">studentID</label>
                 </div>
                 <div class="input-container ic2">
-                    <input id="number" class="input" type="number" placeholder=" " value={number} onChange={(e) => setNumber(e.target.value)} />
+                    <input id="number" class="input" type="number" required placeholder=" " value={number} onChange={(e) => setNumber(e.target.value)} />
                     <div class="cut cut-long"></div>
                     <label for="number" class="placeholder">Number of tickets</label>
                 </div>
