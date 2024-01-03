@@ -21,7 +21,7 @@ export default function Winners({ walletAddress, setStatus }) {
     };
 
     return (
-        <section id='winners' class='christams-lottery-comp'>
+        <section id='winners' class='christmas-lottery-comp'>
             <div class="subtitle"> Winners:
                 {winners.map((winner, index) => (
                     <div key={index}>

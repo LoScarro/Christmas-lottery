@@ -12,12 +12,16 @@ export default function AddTicketForm({ walletAddress, setStatus }) {
 
     const onAddTicketSubmit = async (e) => {
         e.preventDefault();
+        if (firstname === '' || lastname === '' || studentID === '' || number === '') {
+            setStatus("⚠️ Please fill out all fields");
+            return;
+        }
         const { status } = await addTicket(firstname, lastname, studentID, number, walletAddress);
         setStatus(status);
     };
 
     return (
-        <section id='addTicket' class='christams-lottery-comp'>
+        <section id='addTicket' class='christmas-lottery-comp'>
             <form onSubmit={onAddTicketSubmit}>
                 <div class="title">Welcome</div>
                 <div class="subtitle">Buy a ticket!</div>

@@ -13,17 +13,28 @@ import Wallet from "./components/walletConnection/walletConnection";
 import Status from "./components/status/status.js";
 
 // import utils
-import { christmas_lottery_contract } from "./utils/contract.js";
+import { christmas_lottery_contract, isOwner } from "./utils/contract.js";
 
 
 
 function App() {
   const [walletAddress, setWallet] = useState("");
   const [status, setStatus] = useState("");
+  const [isOwner, setIsOwner] = useState(0); // New state for participant count
+
+  const checkIsOwner = async () => {
+    if (!window.ethereum || !walletAddress) {
+      setStatus("💡 Connect your Metamask wallet to update the message on the blockchain.")
+    } else {
+      const owner = await isOwner(walletAddress);
+      setIsOwner(owner);
+    }
+  };
 
   useEffect(() => {
     // event listener for changes in the smart contract
     addSmartContractListener();
+    checkIsOwner();
   }, []);
 
   // TODO: listener for events in the smart contract
@@ -38,10 +49,13 @@ function App() {
     });
   }
 
+  if(isOwner) {
+    
+  }
+
   return (
     <>
       <div class="top-bar">
-
         <ParticipantCount
           walletAddress={walletAddress}
           setStatus={setStatus}

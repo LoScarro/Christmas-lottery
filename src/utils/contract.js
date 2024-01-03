@@ -6,7 +6,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider(infuraKey));
 // abi from https://sepolia.etherscan.io/address/0xd65CB661a096004B733066b8B14117C86CB0C5d0#code
 const contractABI = require("../contract-abi.json");
 // address from https://sepolia.etherscan.io/address/0xd65CB661a096004B733066b8B14117C86CB0C5d0#code
-const contractAddress = "0x028ad62f6F836C040B622D07bA39Bd396b188cE9";
+const contractAddress = "0x272bea653c49a49170587BcfbDa5B120a8E608Df";
 
 export const christmas_lottery_contract = new web3.eth.Contract(
     contractABI,
@@ -16,6 +16,17 @@ export const christmas_lottery_contract = new web3.eth.Contract(
 export const checkConnection = async (walletAddress) => {
     return (!window.ethereum || !walletAddress)
 }
+
+export const isOwner = async (walletAddress) => {
+    try {
+        const isOwner = await christmas_lottery_contract.methods.isOwner().call({ from: walletAddress });
+        // convert from BigNumber to String. The web3.js library often returns numbers as BigNumber objects.
+        return isOwner;
+    }
+    catch (error) {
+        console.error('Error sending transaction:', error);
+    }
+};
 
 export const getParticipantCount = async (walletAddress) => {
     try {
@@ -31,7 +42,7 @@ export const getParticipantCount = async (walletAddress) => {
 export const getWinners = async (walletAddress) => {
     try {
         const winners = await christmas_lottery_contract.methods.showWinners().call({ from: walletAddress });
-
+        console.log(winners);
         // Convertire ogni tupla in un oggetto con i campi firstname, lastname e studentID
         const winnersArray = winners.map(tuple => ({
             firstname: tuple[0],

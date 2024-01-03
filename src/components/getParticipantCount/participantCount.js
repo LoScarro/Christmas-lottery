@@ -25,7 +25,7 @@ export default function ParticipantCount({ walletAddress, setStatus }) {
 
 
     return (
-        <section id='participantCount' class='christams-lottery-comp'>
+        <section id='participantCount' class='christmas-lottery-comp'>
             <div class="subtitle">Number of participants: {participantCount}</div>
         </section>
     )

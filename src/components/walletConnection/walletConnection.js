@@ -56,7 +56,7 @@ export default function Wallet({ walletAddress, setStatus, setWallet }) {
     };
 
     return (
-        <section id='wallet' class='christams-lottery-comp'>
+        <section id='wallet' class='christmas-lottery-comp'>
             <button type="text" class="submit" onClick={handleWalletConnection}>
                 {walletAddress.length > 0 ? formatWalletAddress(walletAddress) : <span>Connect Wallet</span>}
             </button>
