@@ -8,9 +8,8 @@ export default function Winners({ walletAddress, setStatus }) {
     const [winners, setWinners] = useState([]);
 
     const onGetWinnersPressed = async () => {
-        if (!window.ethereum || !walletAddress) {
-            setStatus("💡 Connect your Metamask wallet to play with the lottery.")
-        } else {
+        // Check if Metamask is installed and if a wallet is connected
+        if (window.ethereum && walletAddress) {
             try {
                 const users = await getWinners(walletAddress);
                 setWinners(users);
@@ -33,7 +32,7 @@ export default function Winners({ walletAddress, setStatus }) {
                 ))}
             </div>
             <button type="text" class="submit" onClick={onGetWinnersPressed}>
-            Get Winners
+                Get Winners
             </button>
         </section>
     );

@@ -18,16 +18,17 @@ import { christmas_lottery_contract, checkIsOwner } from "./utils/contract.js";
 const connectMetamask = "💡 Connect your Metamask wallet to play with the lottery."
 
 function App() {
+  // wallet address of the connected wallet
   const [walletAddress, setWallet] = useState("");
+  // message for the user
   const [status, setStatus] = useState("");
   // enable features only for the owner
   const [isOwner, setIsOwner] = useState(false);
 
   // check if the connected wallet belongs to the owner
   const isUserOwner = async () => {
-    if (!window.ethereum || !walletAddress) {
-      setStatus(connectMetamask)
-    } else {
+    // check if Metamask is installed and if a wallet is connected
+    if (window.ethereum && walletAddress) {
       const owner = await checkIsOwner(walletAddress);
       setIsOwner(owner);
       if (owner) {
@@ -39,6 +40,7 @@ function App() {
   useEffect(() => {
     // event listener for changes in the smart contract
     addSmartContractListener();
+    // check if the connected wallet belongs to the owner
     isUserOwner();
   }, [walletAddress]);
 

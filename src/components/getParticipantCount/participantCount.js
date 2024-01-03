@@ -9,6 +9,7 @@ export default function ParticipantCount({ walletAddress, setStatus }) {
     const [participantCount, setParticipantCount] = useState(0); // New state for participant count
 
     const onGetParticipantsPressed = async () => {
+        // if Metamask is not installed or if a wallet is not connected suggest to connect the wallet
         if (!window.ethereum || !walletAddress) {
             setStatus("💡 Connect your Metamask wallet to play with the lottery.")
         } else {
@@ -21,8 +22,6 @@ export default function ParticipantCount({ walletAddress, setStatus }) {
     useEffect(() => {
         onGetParticipantsPressed();
     }, [onGetParticipantsPressed]);
-
-
 
     return (
         <section id='participantCount' class='christmas-lottery-comp'>
