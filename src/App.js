@@ -15,8 +15,6 @@ import Status from "./components/status/status.js";
 // import utils
 import { christmas_lottery_contract, checkIsOwner } from "./utils/contract.js";
 
-const connectMetamask = "💡 Connect your Metamask wallet to play with the lottery."
-
 function App() {
   // wallet address of the connected wallet
   const [walletAddress, setWallet] = useState("");

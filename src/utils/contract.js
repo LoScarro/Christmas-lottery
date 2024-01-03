@@ -24,7 +24,7 @@ export const checkIsOwner = async (walletAddress) => {
         return owner;
     }
     catch (error) {
-        console.error('Error sending transaction:', error);
+        console.error('Error retrieving ownership:', error);
     }
 };
 
@@ -35,14 +35,13 @@ export const getParticipantCount = async (walletAddress) => {
         return participantsNumber.toString();
     }
     catch (error) {
-        console.error('Error sending transaction:', error);
+        console.error('Error retrieving participants:', error);
     }
 };
 
 export const getWinners = async (walletAddress) => {
     try {
         const winners = await christmas_lottery_contract.methods.showWinners().call({ from: walletAddress });
-        console.log(winners);
         // Convertire ogni tupla in un oggetto con i campi firstname, lastname e studentID
         const winnersArray = winners.map(tuple => ({
             firstname: tuple[0],
@@ -56,123 +55,52 @@ export const getWinners = async (walletAddress) => {
     }
 };
 
+const sendTransaction = async (method, parameters, walletAddress) => {
+    try {
+        //set up transaction parameters
+        const transactionParameters = {
+            to: contractAddress, // Required except during contract publications.
+            from: walletAddress, // must match user's active address.
+            data: christmas_lottery_contract.methods[method](...parameters).encodeABI(),
+        };
+        //sign the transaction
+        const txHash = await window.ethereum.request({
+            method: "eth_sendTransaction",
+            params: [transactionParameters],
+        });
+        // show a message to the user that the transaction has been sent
+        return {
+            status: (
+                <span>
+                    ✅{" "}
+                    <a target="_blank" href={`https://sepolia.etherscan.io/tx/${txHash}`}>
+                        View the status of your transaction on Etherscan!
+                    </a>
+                </span>
+            ),
+        };
+    } catch (error) {
+        // in case of an error, show a message to the user
+        // a possible error is that the user rejected the transaction
+        return {
+            status: "😥 " + error.message,
+        };
+    }
+};
 
 export const addTicket = async (firstname, lastname, studentID, number, walletAddress) => {
-    //set up transaction parameters
-    const transactionParameters = {
-        to: contractAddress, // Required except during contract publications.
-        from: walletAddress, // must match user's active address.
-        data: christmas_lottery_contract.methods.addTicket(firstname, lastname, studentID, number).encodeABI(),
-    };
-    //sign the transaction
-    try {
-        const txHash = await window.ethereum.request({
-            method: "eth_sendTransaction",
-            params: [transactionParameters],
-        });
-        return {
-            status: (
-                <span>
-                    ✅{" "}
-                    <a target="_blank" href={`https://sepolia.etherscan.io/tx/${txHash}`}>
-                        View the status of your transaction on Etherscan!
-                    </a>
-                </span>
-            ),
-        };
-    } catch (error) {
-        return {
-            status: "😥 " + error.message,
-        };
-    }
-}
-
-export const resetWinners = async (walletAddress) => {
-    //set up transaction parameters
-    const transactionParameters = {
-        to: contractAddress, // Required except during contract publications.
-        from: walletAddress, // must match user's active address.
-        data: christmas_lottery_contract.methods.resetWinners().encodeABI(),
-    };
-    //sign the transaction
-    try {
-        const txHash = await window.ethereum.request({
-            method: "eth_sendTransaction",
-            params: [transactionParameters],
-        });
-        return {
-            status: (
-                <span>
-                    ✅{" "}
-                    <a target="_blank" href={`https://sepolia.etherscan.io/tx/${txHash}`}>
-                        View the status of your transaction on Etherscan!
-                    </a>
-                </span>
-            ),
-        };
-    } catch (error) {
-        return {
-            status: "😥 " + error.message,
-        };
-    }
-}
-
-export const resetParticipants = async (walletAddress) => {
-    //set up transaction parameters
-    const transactionParameters = {
-        to: contractAddress, // Required except during contract publications.
-        from: walletAddress, // must match user's active address.
-        data: christmas_lottery_contract.methods.resetPartecipants().encodeABI(),    // resetParticipants not resetPartecipants
-    };
-    //sign the transaction
-    try {
-        const txHash = await window.ethereum.request({
-            method: "eth_sendTransaction",
-            params: [transactionParameters],
-        });
-        return {
-            status: (
-                <span>
-                    ✅{" "}
-                    <a target="_blank" href={`https://sepolia.etherscan.io/tx/${txHash}`}>
-                        View the status of your transaction on Etherscan!
-                    </a>
-                </span>
-            ),
-        };
-    } catch (error) {
-        return {
-            status: "😥 " + error.message,
-        };
-    }
+    return sendTransaction('addTicket', [firstname, lastname, studentID, number], walletAddress);
 }
 
 export const drawTicket = async (number, walletAddress) => {
-    //set up transaction parameters
-    const transactionParameters = {
-        to: contractAddress, // Required except during contract publications.
-        from: walletAddress, // must match user's active address.
-        data: christmas_lottery_contract.methods.drawTicket(number).encodeABI(),
-    };
-    //sign the transaction
-    try {
-        const txHash = await window.ethereum.request({
-            method: "eth_sendTransaction",
-            params: [transactionParameters],
-        });
-        return {
-            status: (
-                <span>
-                    ✅{" "}
-                    <a target="_blank" href={`https://sepolia.etherscan.io/tx/${txHash}`}>
-                        View the status of your transaction on Etherscan!
-                    </a>
-                </span>
-            ),
-        };
-    } catch (error) {
-        return {
-            status: "😥 " + error.message,
-        };
-    }
+    return sendTransaction('drawTicket', [number], walletAddress);
 }
+
+export const resetWinners = async (walletAddress) => {
+    return sendTransaction('resetWinners', [], walletAddress);
+}
+
+export const resetParticipants = async (walletAddress) => {
+    return sendTransaction('resetPartecipants', [], walletAddress);
+}
+

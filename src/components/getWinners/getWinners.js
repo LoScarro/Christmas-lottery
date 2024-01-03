@@ -8,8 +8,10 @@ export default function Winners({ walletAddress, setStatus }) {
     const [winners, setWinners] = useState([]);
 
     const onGetWinnersPressed = async () => {
-        // Check if Metamask is installed and if a wallet is connected
-        if (window.ethereum && walletAddress) {
+        // check if Metamask is installed and if a wallet is connected
+        if (!window.ethereum || !walletAddress) {
+            setStatus("💡 Connect your Metamask wallet to play with the lottery.")
+        } else {
             try {
                 const users = await getWinners(walletAddress);
                 setWinners(users);

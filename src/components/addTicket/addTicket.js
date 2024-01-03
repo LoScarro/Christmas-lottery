@@ -41,11 +41,11 @@ export default function AddTicketForm({ walletAddress, setStatus }) {
                     <label for="studentId" class="placeholder">studentID</label>
                 </div>
                 <div class="input-container ic2">
-                    <input id="number" class="input" type="number" required placeholder=" " value={number} onChange={(e) => setNumber(e.target.value)} />
+                    <input id="number" class="input" type="number" required placeholder=" " value={number} onChange={(e) => setNumber(Math.max(0,e.target.value))} />
                     <div class="cut cut-long"></div>
                     <label for="number" class="placeholder">Number of tickets</label>
                 </div>
-                <button type="text" class="submit">submit</button>
+                <button type="text" class="submit">Add ticket</button>
             </form>
         </section>
     );

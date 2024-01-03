@@ -6,13 +6,11 @@ import {
 } from "../../utils/contract.js";
 
 export default function ParticipantCount({ walletAddress, setStatus }) {
-    const [participantCount, setParticipantCount] = useState(0); // New state for participant count
+    const [participantCount, setParticipantCount] = useState("..."); // New state for participant count
 
     const onGetParticipantsPressed = async () => {
-        // if Metamask is not installed or if a wallet is not connected suggest to connect the wallet
-        if (!window.ethereum || !walletAddress) {
-            setStatus("💡 Connect your Metamask wallet to play with the lottery.")
-        } else {
+        // check if Metamask is installed and if a wallet is connected
+        if (window.ethereum && walletAddress) {
             const count = await getParticipantCount(walletAddress);
             setParticipantCount(count);
         }
