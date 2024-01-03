@@ -17,11 +17,11 @@ export const checkConnection = async (walletAddress) => {
     return (!window.ethereum || !walletAddress)
 }
 
-export const isOwner = async (walletAddress) => {
+export const checkIsOwner = async (walletAddress) => {
     try {
-        const isOwner = await christmas_lottery_contract.methods.isOwner().call({ from: walletAddress });
+        const owner = await christmas_lottery_contract.methods.isOwner().call({ from: walletAddress });
         // convert from BigNumber to String. The web3.js library often returns numbers as BigNumber objects.
-        return isOwner;
+        return owner;
     }
     catch (error) {
         console.error('Error sending transaction:', error);

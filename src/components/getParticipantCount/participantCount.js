@@ -10,7 +10,7 @@ export default function ParticipantCount({ walletAddress, setStatus }) {
 
     const onGetParticipantsPressed = async () => {
         if (!window.ethereum || !walletAddress) {
-            setStatus("💡 Connect your Metamask wallet to update the message on the blockchain.")
+            setStatus("💡 Connect your Metamask wallet to play with the lottery.")
         } else {
             const count = await getParticipantCount(walletAddress);
             setParticipantCount(count);

@@ -9,7 +9,7 @@ export default function Winners({ walletAddress, setStatus }) {
 
     const onGetWinnersPressed = async () => {
         if (!window.ethereum || !walletAddress) {
-            setStatus("💡 Connect your Metamask wallet to update the message on the blockchain.")
+            setStatus("💡 Connect your Metamask wallet to play with the lottery.")
         } else {
             try {
                 const users = await getWinners(walletAddress);

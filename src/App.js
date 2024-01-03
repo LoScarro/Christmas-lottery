@@ -13,29 +13,35 @@ import Wallet from "./components/walletConnection/walletConnection";
 import Status from "./components/status/status.js";
 
 // import utils
-import { christmas_lottery_contract, isOwner } from "./utils/contract.js";
+import { christmas_lottery_contract, checkIsOwner } from "./utils/contract.js";
 
-
+const connectMetamask = "💡 Connect your Metamask wallet to play with the lottery."
 
 function App() {
   const [walletAddress, setWallet] = useState("");
   const [status, setStatus] = useState("");
-  const [isOwner, setIsOwner] = useState(0); // New state for participant count
+  // enable features only for the owner
+  const [isOwner, setIsOwner] = useState(false);
 
-  const checkIsOwner = async () => {
+  // check if the connected wallet belongs to the owner
+  const isUserOwner = async () => {
     if (!window.ethereum || !walletAddress) {
-      setStatus("💡 Connect your Metamask wallet to update the message on the blockchain.")
+      setStatus(connectMetamask)
     } else {
-      const owner = await isOwner(walletAddress);
+      const owner = await checkIsOwner(walletAddress);
       setIsOwner(owner);
+      if (owner) {
+        setStatus("👋🏻 Welcome back, owner!");
+      }
     }
   };
 
   useEffect(() => {
     // event listener for changes in the smart contract
     addSmartContractListener();
-    checkIsOwner();
-  }, []);
+    isUserOwner();
+  }, [walletAddress]);
+
 
   // TODO: listener for events in the smart contract
   function addSmartContractListener() {
@@ -49,8 +55,37 @@ function App() {
     });
   }
 
-  if(isOwner) {
-    
+  let ownerComponents = null;
+
+  if (isOwner) {
+    // Render components that are visible only to the owner
+    ownerComponents = (
+      <>
+        <AddTicketForm
+          walletAddress={walletAddress}
+          setStatus={setStatus}
+        />
+
+        <DrawTicket
+          walletAddress={walletAddress}
+          setStatus={setStatus}
+        />
+
+        <div class="reset-buttons">
+
+          <ResetWinners
+            walletAddress={walletAddress}
+            setStatus={setStatus}
+          />
+
+          <ResetParticipants
+            walletAddress={walletAddress}
+            setStatus={setStatus}
+          />
+
+        </div>
+      </>
+    );
   }
 
   return (
@@ -69,29 +104,7 @@ function App() {
 
       </div>
 
-      <AddTicketForm
-        walletAddress={walletAddress}
-        setStatus={setStatus}
-      />
-
-      <DrawTicket
-        walletAddress={walletAddress}
-        setStatus={setStatus}
-      />
-
-      <div class="reset-buttons">
-
-        <ResetWinners
-          walletAddress={walletAddress}
-          setStatus={setStatus}
-        />
-
-        <ResetParticipants
-          walletAddress={walletAddress}
-          setStatus={setStatus}
-        />
-
-      </div>
+      {ownerComponents}
 
       <Winners
         walletAddress={walletAddress}
