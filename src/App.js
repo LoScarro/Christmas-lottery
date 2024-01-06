@@ -27,11 +27,9 @@ function App() {
   const isUserOwner = async () => {
     // check if Metamask is installed and if a wallet is connected
     if (window.ethereum && walletAddress) {
-      const owner = await checkIsOwner(walletAddress);
+      const {owner, status} = await checkIsOwner(walletAddress);
       setIsOwner(owner);
-      if (owner) {
-        setStatus("👋🏻 Welcome back, owner!");
-      }
+      setStatus(status);
     }
   };
 

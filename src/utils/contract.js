@@ -20,11 +20,21 @@ export const checkConnection = async (walletAddress) => {
 export const checkIsOwner = async (walletAddress) => {
     try {
         const owner = await christmas_lottery_contract.methods.isOwner().call({ from: walletAddress });
-        // convert from BigNumber to String. The web3.js library often returns numbers as BigNumber objects.
-        return owner;
+        // print a different message if the user is the owner
+        var status = "☃️ Welcome to the Christmas Lottery!";
+        if (owner) status= "👋🏻 Welcome back, owner!";  
+        
+        return {
+            owner: owner,
+            status: status,
+        };
     }
     catch (error) {
-        console.error('Error retrieving ownership:', error);
+        console.error('Error retrieving owner:', error);
+        return {
+            owner: false,
+            status: "😥 Some error occurred while retrieving the ownership status"
+        };
     }
 };
 
@@ -32,10 +42,17 @@ export const getParticipantCount = async (walletAddress) => {
     try {
         const participantsNumber = await christmas_lottery_contract.methods.participantsCount().call({ from: walletAddress });
         // convert from BigNumber to String. The web3.js library often returns numbers as BigNumber objects.
-        return participantsNumber.toString();
+        
+        return {
+            count: participantsNumber.toString(),
+        };
     }
     catch (error) {
         console.error('Error retrieving participants:', error);
+        return {
+            count: "...",
+            status: "😥 Some error occurred while retrieving the participants number"
+        };
     }
 };
 
@@ -49,9 +66,16 @@ export const getWinners = async (walletAddress) => {
             studentID: tuple[2]
         }));
 
-        return winnersArray;
+        return {
+            winners: winnersArray,
+            status: "Here are the winners!",
+        };
     } catch (error) {
         console.error('Error retrieving winners:', error);
+        return {
+            winners: [],
+            status: "😥 " + error.message,
+        };
     }
 };
 

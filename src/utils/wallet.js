@@ -1,3 +1,6 @@
+const WELCOME = "☃️ Welcome to the Christmas Lottery!"
+const INST_METAMASK = "You must install Metamask, a virtual Ethereum wallet, in your browser."
+
 export const connectWallet = async () => {
     // checks if window.ethereum is installed in browser
     if (window.ethereum) {
@@ -7,7 +10,7 @@ export const connectWallet = async () => {
                 method: "eth_requestAccounts",
             });
             const obj = {
-                status: "☃️ Welcome to the Christmas Lottery!",
+                status: WELCOME,
                 // take the first address in the array of addresses and display it to the user in our Wallet
                 address: addressArray[0],
             };
@@ -28,8 +31,7 @@ export const connectWallet = async () => {
                         {" "}
                         🦊{" "}
                         <a target="_blank" href={`https://metamask.io/download.html`}>
-                            You must install Metamask, a virtual Ethereum wallet, in your
-                            browser.
+                            {INST_METAMASK}
                         </a>
                     </p>
                 </span>
@@ -50,7 +52,7 @@ export const getCurrentWalletConnected = async () => {
             if (addressArray.length > 0) {
                 return {
                     address: addressArray[0],
-                    status: "☃️ Welcome to the Christmas Lottery!",
+                    status: WELCOME,
                 };
             } else {
                 return {
@@ -73,8 +75,7 @@ export const getCurrentWalletConnected = async () => {
                         {" "}
                         🦊{" "}
                         <a target="_blank" href={`https://metamask.io/download.html`}>
-                            You must install Metamask, a virtual Ethereum wallet, in your
-                            browser.
+                            {INST_METAMASK}
                         </a>
                     </p>
                 </span>

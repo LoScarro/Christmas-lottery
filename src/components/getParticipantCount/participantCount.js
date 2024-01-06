@@ -11,7 +11,8 @@ export default function ParticipantCount({ walletAddress, setStatus }) {
     const onGetParticipantsPressed = async () => {
         // check if Metamask is installed and if a wallet is connected
         if (window.ethereum && walletAddress) {
-            const count = await getParticipantCount(walletAddress);
+            const {count, status} = await getParticipantCount(walletAddress);
+            if (status) setStatus(status);
             setParticipantCount(count);
         }
 
