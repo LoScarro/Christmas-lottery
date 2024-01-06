@@ -45,12 +45,12 @@ function App() {
 
   // TODO: listener for events in the smart contract
   function addSmartContractListener() {
-    christmas_lottery_contract.events.WinnerDrawn({}, (error, data) => {
-      if (error) {
-        setStatus("😥 " + error.message);
+    christmas_lottery_contract.events.WinnerDrawn({ fromBlock: 'latest' }, (error, event) => {
+      if (!error) {
+        console.log('WinnerDrawn event:', event.returnValues);
+        // Handle the event data here
       } else {
-        setStatus(data.returnValues[1]);
-        console.log(data.returnValues[1]);
+        console.error('Error:', error);
       }
     });
   }
