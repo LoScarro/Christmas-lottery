@@ -45,10 +45,10 @@ function App() {
   function addSmartContractListener() {
     christmas_lottery_contract.events.WinnerDrawn({ fromBlock: 'latest' }, (error, event) => {
       if (!error) {
-        console.log('WinnerDrawn event:', event.returnValues);
+        console.log('WinnerDrawn event: ', event.returnValues);
         // Handle the event data here
       } else {
-        console.error('Error:', error);
+        console.error('Error: ', error);
       }
     });
   }

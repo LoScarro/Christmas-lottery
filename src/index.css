@@ -3,12 +3,18 @@
   --color-bg: #313c33;
   --color-bg-buttons: #5E1E25;
   --color-bg-buttons-selected: #49171d;
-  --color-text: #f6eddf;  /*text*/
-  --color-input: #EFD1A5; /*input bg*/
-  --color-text-input: #313c33;  /*user text inside input*/
-  --color-placeholder-1: #313c33; /*placeholder inside input*/
-  --color-placeholder-2: #f6eddf; /*text that moves over the input*/
-  --color-placeholder-red: #dc2f55; /*text that moves over the selected input*/
+  --color-text: #f6eddf;
+  /*text*/
+  --color-input: #EFD1A5;
+  /*input bg*/
+  --color-text-input: #313c33;
+  /*user text inside input*/
+  --color-placeholder-1: #313c33;
+  /*placeholder inside input*/
+  --color-placeholder-2: #f6eddf;
+  /*text that moves over the input*/
+  --color-placeholder-red: #dc2f55;
+  /*text that moves over the selected input*/
 
   --transition: transform 200ms;
 }
@@ -65,6 +71,14 @@ body {
 
 .ic1 {
   margin-top: 40px;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: blue;
 }
 
 .ic2 {
@@ -155,11 +169,11 @@ body {
 }
 
 .top-bar {
-  display:flex; 
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
 }
 
 .reset-buttons {
-  display:flex; 
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
 }
