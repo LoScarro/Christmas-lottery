@@ -1,4 +1,3 @@
-const WELCOME = "☃️ Welcome to the Christmas Lottery!"
 const INST_METAMASK = "You must install Metamask, a virtual Ethereum wallet, in your browser."
 
 export const connectWallet = async () => {
@@ -10,7 +9,6 @@ export const connectWallet = async () => {
                 method: "eth_requestAccounts",
             });
             const obj = {
-                status: WELCOME,
                 // take the first address in the array of addresses and display it to the user in our Wallet
                 address: addressArray[0],
             };
@@ -51,8 +49,7 @@ export const getCurrentWalletConnected = async () => {
             // if Metamask is connected then take the first address in the array of addresses
             if (addressArray.length > 0) {
                 return {
-                    address: addressArray[0],
-                    status: WELCOME,
+                    address: addressArray[0]
                 };
             } else {
                 return {

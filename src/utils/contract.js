@@ -20,8 +20,9 @@ export const checkConnection = async (walletAddress) => {
 export const checkIsOwner = async (walletAddress) => {
     try {
         const owner = await christmas_lottery_contract.methods.isOwner().call({ from: walletAddress });
-        // print a different message if the user is the owner
+        
         var status = "☃️ Welcome to the Christmas Lottery!";
+        // print a different message if the user is the owner
         if (owner) status= "👋🏻 Welcome back, owner!";  
         
         return {
@@ -41,8 +42,8 @@ export const checkIsOwner = async (walletAddress) => {
 export const getParticipantCount = async (walletAddress) => {
     try {
         const participantsNumber = await christmas_lottery_contract.methods.participantsCount().call({ from: walletAddress });
-        // convert from BigNumber to String. The web3.js library often returns numbers as BigNumber objects.
         
+        // convert from BigNumber to String. The web3.js library often returns numbers as BigNumber objects.
         return {
             count: participantsNumber.toString(),
         };
@@ -59,7 +60,7 @@ export const getParticipantCount = async (walletAddress) => {
 export const getWinners = async (walletAddress) => {
     try {
         const winners = await christmas_lottery_contract.methods.showWinners().call({ from: walletAddress });
-        // Convertire ogni tupla in un oggetto con i campi firstname, lastname e studentID
+        // convert each tuple into an object with the fields firstname, lastname and studentID
         const winnersArray = winners.map(tuple => ({
             firstname: tuple[0],
             lastname: tuple[1],
@@ -106,6 +107,7 @@ const sendTransaction = async (method, parameters, walletAddress) => {
     } catch (error) {
         // in case of an error, show a message to the user
         // a possible error is that the user rejected the transaction
+        console.error(`Error during the transaction ${method}:`, error);
         return {
             status: "😥 " + error.message,
         };

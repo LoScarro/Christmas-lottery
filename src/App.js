@@ -19,7 +19,7 @@ function App() {
   // wallet address of the connected wallet
   const [walletAddress, setWallet] = useState("");
   // message for the user
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("...");
   // enable features only for the owner
   const [isOwner, setIsOwner] = useState(false);
 

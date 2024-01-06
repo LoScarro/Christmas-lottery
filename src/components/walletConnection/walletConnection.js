@@ -21,7 +21,6 @@ export default function Wallet({ walletAddress, setStatus, setWallet }) {
             window.ethereum.on("accountsChanged", (accounts) => {
                 if (accounts.length > 0) {
                     setWallet(accounts[0]);
-                    setStatus("☃️ Welcome to the Christmas Lottery!");
                 } else {
                     setWallet("");
                     setStatus("🦊 Connect to Metamask using the top right button.");
@@ -51,7 +50,7 @@ export default function Wallet({ walletAddress, setStatus, setWallet }) {
 
     const handleWalletConnection = async () => {
         const { status, address } = await connectWallet();
-        setStatus(status);
+        if (status) setStatus(status);
         setWallet(address);
     };
 

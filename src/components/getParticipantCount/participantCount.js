@@ -6,7 +6,7 @@ import {
 } from "../../utils/contract.js";
 
 export default function ParticipantCount({ walletAddress, setStatus }) {
-    const [participantCount, setParticipantCount] = useState("..."); // New state for participant count
+    const [participantCount, setParticipantCount] = useState("..."); // initial state for participant count
 
     const onGetParticipantsPressed = async () => {
         // check if Metamask is installed and if a wallet is connected
