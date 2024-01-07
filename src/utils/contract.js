@@ -1,12 +1,12 @@
 import Web3 from 'web3';
 
 const infuraKey = process.env.REACT_APP_INFURA_API_KEY
+const contractAddress = "0x272bea653c49a49170587BcfbDa5B120a8E608Df"
 const web3 = new Web3(new Web3.providers.HttpProvider(infuraKey));
 
 // abi from https://sepolia.etherscan.io/address/0xd65CB661a096004B733066b8B14117C86CB0C5d0#code
 const contractABI = require("../contract-abi.json");
 // address from https://sepolia.etherscan.io/address/0xd65CB661a096004B733066b8B14117C86CB0C5d0#code
-const contractAddress = "0x272bea653c49a49170587BcfbDa5B120a8E608Df";
 
 export const christmas_lottery_contract = new web3.eth.Contract(
     contractABI,
@@ -69,7 +69,7 @@ export const getWinners = async (walletAddress) => {
 
         return {
             winners: winnersArray,
-            status: "Here are the winners!",
+            status: "☝🏻 Here are the winners!",
         };
     } catch (error) {
         console.error('Error retrieving winners:', error);

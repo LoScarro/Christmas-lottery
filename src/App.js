@@ -27,7 +27,7 @@ function App() {
   const isUserOwner = async () => {
     // check if Metamask is installed and if a wallet is connected
     if (window.ethereum && walletAddress) {
-      const {owner, status} = await checkIsOwner(walletAddress);
+      const { owner, status } = await checkIsOwner(walletAddress);
       setIsOwner(owner);
       setStatus(status);
     }
@@ -35,20 +35,20 @@ function App() {
 
   useEffect(() => {
     // event listener for changes in the smart contract
-    addSmartContractListener();
+    eventListener();
     // check if the connected wallet belongs to the owner
     isUserOwner();
   }, [walletAddress]);
 
-
-  // TODO: listener for events in the smart contract
-  function addSmartContractListener() {
-    christmas_lottery_contract.events.WinnerDrawn({ fromBlock: 'latest' }, (error, event) => {
+  function eventListener() {
+    christmas_lottery_contract.events["WinnerDrawn"]({}, (error, event) => {
       if (!error) {
-        console.log('WinnerDrawn event: ', event.returnValues);
-        // Handle the event data here
+        // Handle the event data
+        const eventData = event.returnValues;
+        console.log('Event data:', eventData);
+
       } else {
-        console.error('Error: ', error);
+        console.error('Error listening to the event:', error);
       }
     });
   }
