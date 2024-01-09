@@ -14,10 +14,10 @@
                 "type": "uint256"
             },
             {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "_identifier",
-                "type": "uint256"
+                "indexed": false,
+                "internalType": "string",
+                "name": "_studentID",
+                "type": "string"
             },
             {
                 "indexed": false,
@@ -51,7 +51,7 @@
                 "type": "string"
             },
             {
-                "indexed": true,
+                "indexed": false,
                 "internalType": "string",
                 "name": "_studentID",
                 "type": "string"
@@ -130,6 +130,13 @@
     {
         "inputs": [],
         "name": "resetPartecipants",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "resetWinners",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"

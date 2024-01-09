@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 
 const infuraKey = process.env.REACT_APP_INFURA_API_KEY
-const contractAddress = "0xC706a87ADdb7c24c39Edb9f1BbFc37ABA410BA5b"
+const contractAddress = "0x5d33AD128Cf17c49DFeB711cBB006395026A5b27"
 const web3 = new Web3(new Web3.providers.HttpProvider(infuraKey));
 
 // abi from https://sepolia.etherscan.io/address/0xd65CB661a096004B733066b8B14117C86CB0C5d0#code
@@ -125,6 +125,10 @@ export const addTicket = async (firstname, lastname, studentID, number, walletAd
 
 export const drawTicket = async (number, walletAddress) => {
     return sendTransaction('drawTicket', [number], walletAddress);
+}
+
+export const resetWinners = async (walletAddress) => {
+    return sendTransaction('resetWinners', [], walletAddress);
 }
 
 export const resetParticipants = async (walletAddress) => {

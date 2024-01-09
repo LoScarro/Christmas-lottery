@@ -4,6 +4,7 @@ import { React, useEffect, useState } from "react";
 import AddTicketForm from "./components/addTicket/addTicket";
 import ParticipantCount from "./components/getParticipantCount/participantCount";
 import DrawTicket from "./components/drawTicket/drawTicket";
+import ResetWinners from "./components/resetWinners/resetWinners";
 import ResetParticipants from "./components/resetParticipants/resetParticipants";
 import Winners from "./components/getWinners/getWinners";
 // manage all the login related to the wallet connection
@@ -68,10 +69,17 @@ function App() {
           setStatus={setStatus}
         />
 
-        <ResetParticipants
-          walletAddress={walletAddress}
-          setStatus={setStatus}
-        />
+        <div class="reset-buttons">
+          <ResetWinners
+            walletAddress={walletAddress}
+            setStatus={setStatus}
+          />
+
+          <ResetParticipants
+            walletAddress={walletAddress}
+            setStatus={setStatus}
+          />
+        </div>
 
       </>
     );
