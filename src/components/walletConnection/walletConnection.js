@@ -12,11 +12,11 @@ export default function Wallet({ walletAddress, setStatus, setWallet }) {
         }
         getConnectedWallet();
         // event listener for changes in the wallet connection
-        addWalletListener();
+        walletListener();
     }, []);
 
     // lister for changes in the wallet connection
-    function addWalletListener() {
+    function walletListener() {
         if (window.ethereum) {
             window.ethereum.on("accountsChanged", (accounts) => {
                 if (accounts.length > 0) {

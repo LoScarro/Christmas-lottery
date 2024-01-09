@@ -68,14 +68,11 @@ function App() {
           setStatus={setStatus}
         />
 
-        <div class="reset-buttons">
+        <ResetParticipants
+          walletAddress={walletAddress}
+          setStatus={setStatus}
+        />
 
-          <ResetParticipants
-            walletAddress={walletAddress}
-            setStatus={setStatus}
-          />
-
-        </div>
       </>
     );
   }
