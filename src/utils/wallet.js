@@ -1,4 +1,4 @@
-const INST_METAMASK = "You must install Metamask, a virtual Ethereum wallet, in your browser."
+const INST_METAMASK = "You must install Metamask in your browser."
 
 export const connectWallet = async () => {
     // checks if window.ethereum is installed in browser
@@ -54,7 +54,7 @@ export const getCurrentWalletConnected = async () => {
             } else {
                 return {
                     address: "",
-                    status: "🦊 Connect to Metamask using the top right button.",
+                    status: "🦊 Connect to Metamask using the \"Connect Wallet\" button.",
                 };
             }
         } catch (err) {

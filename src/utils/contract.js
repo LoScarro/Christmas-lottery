@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 
 const infuraKey = process.env.REACT_APP_INFURA_API_KEY
-const contractAddress = "0x272bea653c49a49170587BcfbDa5B120a8E608Df"
+const contractAddress = "0x3d5a6488c18e2b11a134880d31598996bc3a9211"
 const web3 = new Web3(new Web3.providers.HttpProvider(infuraKey));
 
 // abi from https://sepolia.etherscan.io/address/0xd65CB661a096004B733066b8B14117C86CB0C5d0#code
@@ -59,6 +59,7 @@ export const getParticipantCount = async (walletAddress) => {
 
 export const getWinners = async (walletAddress) => {
     try {
+        var status = "☝🏻 Here are the winners!"
         const winners = await christmas_lottery_contract.methods.showWinners().call({ from: walletAddress });
         // convert each tuple into an object with the fields firstname, lastname and studentID
         const winnersArray = winners.map(tuple => ({
@@ -67,9 +68,13 @@ export const getWinners = async (walletAddress) => {
             studentID: tuple[2]
         }));
 
+        if (winnersArray.length === 0) {
+            status = "😥 No winners yet!"
+        }
+
         return {
             winners: winnersArray,
-            status: "☝🏻 Here are the winners!",
+            status: status,
         };
     } catch (error) {
         console.error('Error retrieving winners:', error);
@@ -120,10 +125,6 @@ export const addTicket = async (firstname, lastname, studentID, number, walletAd
 
 export const drawTicket = async (number, walletAddress) => {
     return sendTransaction('drawTicket', [number], walletAddress);
-}
-
-export const resetWinners = async (walletAddress) => {
-    return sendTransaction('resetWinners', [], walletAddress);
 }
 
 export const resetParticipants = async (walletAddress) => {

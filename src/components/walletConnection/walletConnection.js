@@ -23,7 +23,7 @@ export default function Wallet({ walletAddress, setStatus, setWallet }) {
                     setWallet(accounts[0]);
                 } else {
                     setWallet("");
-                    setStatus("🦊 Connect to Metamask using the top right button.");
+                    setStatus("🦊 Connect to Metamask using the \"Connect Wallet\" button.");
                 }
             });
         } else {
@@ -32,8 +32,7 @@ export default function Wallet({ walletAddress, setStatus, setWallet }) {
                     {" "}
                     🦊{" "}
                     <a target="_blank" href={`https://metamask.io/download.html`}>
-                        You must install Metamask, a virtual Ethereum wallet, in your
-                        browser.
+                        You must install Metamask in your browser.
                     </a>
                 </p>
             );
