@@ -4,9 +4,7 @@ const infuraKey = process.env.REACT_APP_INFURA_API_KEY
 const contractAddress = "0x5d33AD128Cf17c49DFeB711cBB006395026A5b27"
 const web3 = new Web3(new Web3.providers.HttpProvider(infuraKey));
 
-// abi from https://sepolia.etherscan.io/address/0xd65CB661a096004B733066b8B14117C86CB0C5d0#code
 const contractABI = require("../contract-abi.json");
-// address from https://sepolia.etherscan.io/address/0xd65CB661a096004B733066b8B14117C86CB0C5d0#code
 
 export const christmas_lottery_contract = new web3.eth.Contract(
     contractABI,

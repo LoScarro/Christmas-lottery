@@ -45,10 +45,12 @@ function App() {
       if (!error) {
         // Handle the event data
         const eventData = event.returnValues;
-        console.log('Event data:', eventData);
-
+        setStatus(
+          `🎉 Congratulations to the winner: ${eventData.firstname} ${eventData.lastname}!`
+        );
       } else {
         console.error('Error listening to the event:', error);
+        //setStatus("😥 Some error occurred while listening to the event");
       }
     });
   }
