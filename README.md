@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+### Install dependencies with `npm install`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Start the project with `npm start`
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### To use the App, ensure MetaMask is installed in your browser and have a wallet ready for interaction.
 
-### `npm test`
+## Idea
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The process of participating in the lottery begins when a user wants to purchase one or more tickets. The user contacts the contract owner, providing personal information such as name, surname, and student ID, along with the amount of money required to purchase the ticket.
 
-### `npm run build`
+Subsequently, the contract owner uses the `addParticipant` function to register the user, generating a ticket associated with the information provided by the user. This ticket contains the owner's name, surname, and student ID plus an identifier and a timestamp.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+On the day of the draw, the contract owner presses the `getWinner` button, specifying the number *n* of desired winners. At this point, the contract randomly selects *n* winners from all registered participants on the blockchain. Each participant is eligible to win only one prize; the more tickets you purchase, the higher your chances of winning the first prize.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Once the draw is completed, the winner's data becomes available to the owner through the `showWinners` button, who can then announce the lucky winners of the lottery.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Additionally, the owner can also reset the participants and the winners with the `resetParticipants` and `resetWinners` functionalities, allowing the lottery to be used multiple times.
 
-### `npm run eject`
+## Smart contract implementation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Address: *0x5d33AD128Cf17c49DFeB711cBB006395026A5b27*
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The smart contract has been implemented in Solidity using Remix IDE.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+It provides three read methods:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. `isOwner`: returns true if the caller's wallet address corresponds to the owner address, otherwise returns false.
+2. `participantsCount`: returns the number of lottery participants.
+3. `showWinners`: returns a list of tuples containing *firstname*, *lastname*, and *studentID* of the winners drawn from the last reset of the winners/participants.
 
-## Learn More
+And four write methods:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. `addTicket` (`onlyOwner`): takes input from the owner for *firstname*, *lastname,* *studentID,* and *number*, and inserts [*number]* tickets associated with the person's details into the lottery.
+2. `drawTicket` (`onlyOwner`): takes input a number and randomly extracts [number] tickets from the lottery.
+3. `resetParticipants` (`onlyOwner`): resets the participants (and also the winners) in the lottery to 0.
+4. `resetWinners` (`onlyOwner`): reset only the winners to 0.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Front-end
 
-### Code Splitting
+I implemented the front-end using ReactJS, using the Web3 library to handle communication with the smart contract and Infura as a provider.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+It offers two different interfaces based on whether the connected wallet is that of the owner or not.
 
-### Analyzing the Bundle Size
+If the wallet belongs to the owner, the site will display all components:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. The number of participants (refreshed on each page reload)
+2. The button to connect/view the wallet
+3. The form to add new tickets to the lottery
+4. The form to draw winners
+5. The button to reset participants
+6. The button to reset winners
+7. The button to view the winners drawn from the last reset
+8. The status bar
 
-### Making a Progressive Web App
+If the connected wallet does not belong to the owner, the site will only show components 1, 2, 6, and 8.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### **Project Structure Overview**
 
-### Advanced Configuration
+The `App()` function, inside the */App.js* file, is the root component of the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Here all the components are rendered and is checked if the connected wallet belongs to the contract owner, adjusting the displayed components accordingly.
 
-### Deployment
+To determine ownership, the `isOwner` method within the smart contract is invoked through the `checkIsOwner` function. This check occurs on each page reload or whenever the connected wallet changes, leveraging the `useEffect` hook.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Moreover, within `App.js`, there's an attempt to implement an event listener for the smart contract event `WinnerDrawn` but I encountered difficulties in getting it to work as intended.
 
-### `npm run build` fails to minify
+Every component rendered by the `App()` function is located in the */components* directory. Each component has its own folder, including a JavaScript file for its logic and a CSS file for its specific styles. The components' logic is straightforward, typically involving the HTML, a call to the corresponding contract methods, an update of the status bar, and a return of the data provided by the smart contract method. Therefore, I won't delve into the details of each component in this report.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+All interactions with the methods exposed by the contract are encapsulated within the */utils/contract.js* file. Meanwhile, the */utils/wallet.js* file encompasses all the logic for connecting a wallet to the website.
+
+## Issues Encountered
+
+I observed that if the condition of a `require()` is not met, Metamask notifies the user that there might be an error in the contract and prevents the transaction from being accepted.
+
+This occurred when attempting to draw a number of tickets greater than the possible winners. I resolved the issue by implementing a JavaScript check that prevents the user from drawing an excessively high number of winners.
+
+As mentioned earlier, I encountered challenges while working on the event listener intended to capture WinnerDrawn events. Despite attempting various implementations, the event listener appears to ignore the events emitted by the smart contract.
+
+```jsx
+function eventListener() {
+  christmas_lottery_contract.events["WinnerDrawn"]({}, (error, event) => {
+    if (!error) {
+      // Handle the event data
+      const eventData = event.returnValues;
+      setStatus(
+        `🎉 Congratulations to the winner: ${eventData.firstname} ${eventData.lastname}!`
+      );
+    } else {
+      console.error('Error listening to the event:', error);
+      setStatus("😥 Some error occurred while listening to the event");
+    }
+  });
+}
+```
