@@ -1,11 +1,3 @@
-### Install dependencies with `npm install`
-
-### Start the project with `npm start`
-
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### To use the App, ensure MetaMask is installed in your browser and have a wallet ready for interaction.
-
 ## Idea
 
 The process of participating in the lottery begins when a user wants to purchase one or more tickets. The user contacts the contract owner, providing personal information such as name, surname, and student ID, along with the amount of money required to purchase the ticket.
@@ -17,6 +9,14 @@ On the day of the draw, the contract owner presses the `getWinner` button, speci
 Once the draw is completed, the winner's data becomes available to the owner through the `showWinners` button, who can then announce the lucky winners of the lottery.
 
 Additionally, the owner can also reset the participants and the winners with the `resetParticipants` and `resetWinners` functionalities, allowing the lottery to be used multiple times.
+
+### Installation
+- `npm install`
+- To use the App, ensure MetaMask is installed in your browser and have a wallet ready for interaction.
+
+### Start the project
+- `npm start`
+- Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Smart contract implementation
 
@@ -56,7 +56,7 @@ If the wallet belongs to the owner, the site will display all components:
 
 If the connected wallet does not belong to the owner, the site will only show components 1, 2, 6, and 8.
 
-### **Project Structure Overview**
+### Project Structure Overview
 
 The `App()` function, inside the */App.js* file, is the root component of the application.
 
